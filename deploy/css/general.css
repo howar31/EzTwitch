@@ -1,0 +1,55 @@
+a {
+	text-decoration: none;
+	color: #6441A5;
+	transition: 0.3s;
+}
+a:hover {
+	color: #B9A3E3;
+	transition: 0.3s;
+}
+
+.float-twitch {
+	background-color: #FFF;
+	background: url("../images/twitch-trans-flip.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position-x: right;
+	background-position-y: bottom;
+	max-height: calc(100% - 40px);
+	height: 275px;
+	width: 275px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	pointer-events: none;
+}
+
+.logo {
+	display: inline-block;
+	background: url("../images/icon.png");
+	background-size: cover;
+}
+
+.msg_green {
+	color: green;
+	font-weight: bold;
+}
+.msg_red {
+	color: red;
+	font-weight: bold;
+}
+
+#footer {
+	font-size: 0.7rem;
+	font-style: italic;
+	color: rgba(200, 200, 200, 1);
+	text-align: right;
+}
+#footer a {
+	color: rgba(200, 200, 200, 1);
+	transition: 0.3s;
+}
+#footer a:hover {
+	color: #B9A3E3;
+	transition: 0.3s;
+}

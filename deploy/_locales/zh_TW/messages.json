@@ -1,0 +1,203 @@
+{
+   "appName": {
+      "message": "EzTwitch"
+   },
+   "appDesc": {
+      "message": "輕量的 Twitch TV 擴充套件，提供開台通知以及彈出實況視窗的功能。"
+   },
+   "appOptions": {
+      "message": "選項"
+   },
+   "btn_refresh": {
+      "message": "更新"
+   },
+   "btn_options": {
+      "message": "<a class='btn_options' href='#' title='到選項頁面'>選項</a>"
+   },
+   "copyright": {
+      "message": "EzTwitch © 2016 <a href='http://howar31.com/' target='_blank'>Howar31</a> All Rights Reserved"
+   },
+   "msg_intro_p1": {
+      "message": "歡迎使用 EzTwitch ！"
+   },
+   "msg_intro_p2": {
+      "message": "這是一個輕巧的 Twitch TV 套件，提供開台通知、追隨頻道列表、以及輕鬆彈出實況與聊天室視窗的功能。"
+   },
+   "msg_intro_p3_1": {
+      "message": "EzTwitch 不需要任何登入資訊，您只需要在 "
+   },
+   "msg_intro_p3_2": {
+      "message": " 中設定好 Twitch ID 即可，剩下的工作會由 EzTwitch 自動完成。"
+   },
+   "msg_intro_p4_1": {
+      "message": "尚未設定 Twitch ID ，請至 "
+   },
+   "msg_intro_p4_2": {
+      "message": " 中設定。"
+   },
+   "msg_nostream_p1": {
+      "message": "EzTwitch 找不到任何開台中的頻道。"
+   },
+   "msg_nostream_p2_1": {
+      "message": "可能現在追隨的頻道中沒有人開台，或是 "
+   },
+   "msg_nostream_p2_2": {
+      "message": " 中的 Twitch ID 設定錯誤。"
+   },
+   "msg_nostream_p3": {
+      "message": "EzTwitch 稍後將會自動更新並檢查是否有頻道開台。"
+   },
+   "refreshing": {
+      "message": "更新中..."
+   },
+   "stream_game_title": {
+      "message": "點選即可在 Twitch 上查看這個遊戲"
+   },
+   "stream_entry_viewers": {
+      "message": "目前觀眾數"
+   },
+   "label_txt_TwitchID_title": {
+      "message": "EzTwitch 會檢查這個 Twitch ID 的追隨頻道清單。&#13;不需要登入，只要將 ID 輸入在這，剩下的工作會由 EzTwitch 自動完成。"
+   },
+   "txt_TwitchID_title": {
+      "message": "只需要輸入 Tiwtch ID 即可。&#13;EzTwitch 不需要密碼或任何登入資訊。"
+   },
+   "label_chk_Notification_title": {
+      "message": "當勾選時， EzTwitch 會在實況開台的時候跳出通知訊息。&#13;未勾選時，關閉所有通知訊息。"
+   },
+   "label_chk_Notification": {
+      "message": "實況開台通知"
+   },
+   "label_chk_vPopout_title": {
+      "message": "當勾選時， EzTwitch 在開啟實況時會使用彈出視窗開啟實況畫面。&#13;未勾選時， EzTwitch 將會像一般一樣在新分頁開啟實況。"
+   },
+   "label_chk_vPopout": {
+      "message": "使用彈出視窗開啟實況"
+   },
+   "label_chk_vPopout_title": {
+      "message": "當勾選時， EzTwitch 在開啟實況時會使用彈出視窗開啟聊天室。&#13;未勾選時， EzTwitch 將不會彈出聊天室。"
+   },
+   "label_chk_vPopout": {
+      "message": "使用彈出視窗開啟實況"
+   },
+   "label_num_PSH_title": {
+      "message": "設定實況畫面彈出視窗的 寬 x 高。"
+   },
+   "label_num_PSH": {
+      "message": "實況畫面的彈出視窗大小"
+   },
+   "num_PSW_title": {
+      "message": "設定實況畫面彈出視窗的寬度。"
+   },
+   "num_PSH_title": {
+      "message": "設定實況畫面彈出視窗的高度。"
+   },
+   "PSDefault_title": {
+      "message": "將實況畫面彈出視窗還原為預設大小: 1028x600"
+   },
+   "PSDefault": {
+      "message": "預設"
+   },
+   "label_num_PCH_title": {
+      "message": "設定聊天室彈出視窗的 寬 x 高。"
+   },
+   "label_num_PCH": {
+      "message": "聊天室的彈出視窗大小"
+   },
+   "num_PCW_title": {
+      "message": "設定聊天室彈出視窗的寬度。"
+   },
+   "num_PCH_title": {
+      "message": "設定聊天室彈出視窗的高度。"
+   },
+   "PCDefault_title": {
+      "message": "將聊天室彈出視窗還原為預設大小: 400x600"
+   },
+   "PCDefault": {
+      "message": "預設"
+   },
+   "btn_save_title": {
+      "message": "儲存這個選項頁面上的所有設定。"
+   },
+   "btn_save": {
+      "message": "儲存"
+   },
+   "msg_saved": {
+      "message": "✔ 已儲存！"
+   },
+   "option_note": {
+      "message": "Chrome 不支援手動切換擴充套件的語言。<br>要切換 EzTwitch 的顯示語言，請到 Chrome 設定 ( chrome://settings/languages ) 中修改 Chrome 瀏覽器的介面語言"
+   },
+   "twitch_settings": {
+      "message": "Twitch 設定"
+   },
+   "popout_settings": {
+      "message": "彈出視窗設定"
+   },
+   "changelog_title": {
+      "message": "更新日誌"
+   },
+   "clog_101_1": {
+      "message": "修正商店頁面敘述錯誤"
+   },
+   "clog_101_2": {
+      "message": "支援簡體中文"
+   },
+   "clog_100_1": {
+      "message": "初版上線"
+   },
+   "clog_110_1": {
+      "message": "彈出實況畫面和聊天室分別設定"
+   },
+   "clog_110_2": {
+      "message": "舊版彈出視窗選項"
+   },
+   "clog_110_1": {
+      "message": "新增更新日誌，現在你可以看到有什麼新功能了！"
+   },
+   "clog_110_1": {
+      "message": "新增關於，包含套件與開發者資訊"
+   },
+   "label_chk_oldPopout": {
+      "message": "使用舊版的彈出視窗"
+   },
+   "label_chk_oldPopout_title": {
+      "message": "不使用新版的彈出視窗，勾選此選項以改用舊版的彈出視窗"
+   },
+   "about_title": {
+      "message": "關於"
+   },
+   "settings_title": {
+      "message": "設定"
+   },
+   "about_info_note": {
+      "message": "感謝您使用 EzTwitch ，這是由 Howar31 開發的一個開源專案，並可在 GitHub 上檢視所有程式碼。任何評論、問題回報或建議，歡迎到 Chrome 線上應用程式商店的支援頁面提交訊息。"
+   },
+   "about_info_title_1": {
+      "message": "Chrome 線上應用程式商店"
+   },
+   "about_info_title_2": {
+      "message": "GitHub"
+   },
+   "about_info_title_3": {
+      "message": "開發者網站"
+   },
+   "donate_title": {
+      "message": "贊助"
+   },
+   "aboute_donate_note_1": {
+      "message": "EzTwitch 是一個完全免費的 Chrome 擴充套件，不需要支付任何費用即可使用所有功能，並且 EzTwitch 沒有第三方廣告。"
+   },
+   "aboute_donate_note_2": {
+      "message": "如果您喜歡我的套件，可以透過 Paypal 贊助支持我，由您自行決定贊助金額，十分感謝您的支持！ (∩´∀`∩)"
+   },
+   "donate_btn_img": {
+      "message": "https://www.paypal.com/zh_HK/i/btn/btn_donateCC_LG.gif"
+   },
+   "donate_btn_alt": {
+      "message": "透過 Paypal 贊助支持 EzTwitch ！"
+   },
+   "donate_btn_title": {
+      "message": "感謝您的贊助！"
+   }
+}

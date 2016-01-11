@@ -1,0 +1,203 @@
+{
+	"appName": {
+		"message": "EzTwitch"
+	},
+	"appDesc": {
+		"message": "Lightweight extension for Twitch TV notificaiton and popout."
+	},
+	"appOptions": {
+		"message": "Options"
+	},
+	"btn_refresh": {
+		"message": "Refresh"
+	},
+	"btn_options": {
+		"message": "<a class='btn_options' href='#' title='Go to Options'>Options</a>"
+	},
+	"copyright": {
+		"message": "EzTwitch © 2016 <a href='http://howar31.com/' target='_blank'>Howar31</a> All Rights Reserved"
+	},
+	"msg_intro_p1": {
+		"message": "Welcome to EzTwitch !"
+	},
+	"msg_intro_p2": {
+		"message": "This is a light-weight extension for Twitch TV.  You can simply get live notification, following channel list and easy popout windows for video and chat."
+	},
+	"msg_intro_p3_1": {
+		"message": "EzTwitch does not need any login information.  All you have to do is set the Twitch ID in the "
+	},
+	"msg_intro_p3_2": {
+		"message": ", and EzTwitch will automatically handle other stuffs for you."
+	},
+	"msg_intro_p4_1": {
+		"message": "Twitch ID is not set.  Please set the ID in "
+	},
+	"msg_intro_p4_2": {
+		"message": "."
+	},
+	"msg_nostream_p1": {
+		"message": "EzTwitch cannot find any live stream now."
+	},
+	"msg_nostream_p2_1": {
+		"message": "There is no live stream currently, or Twitch ID set in "
+	},
+	"msg_nostream_p2_2": {
+		"message": " is incorrect."
+	},
+	"msg_nostream_p3": {
+		"message": "EzTwitch will automatically refresh and check later."
+	},
+	"refreshing": {
+		"message": "Refreshing..."
+	},
+	"stream_game_title": {
+		"message": "Click to browse this game on Twitch"
+	},
+	"stream_entry_viewers": {
+		"message": "Current Viewers"
+	},
+	"label_txt_TwitchID_title": {
+		"message": "EzTwitch will check this Twitch ID's following channels.&#13;No need to login, just set the ID and EzTwitch will handle the other stuffs."
+	},
+	"txt_TwitchID_title": {
+		"message": "Only Tiwtch ID is needed.&#13;EzTwitch does not need any password or login information."
+	},
+	"label_chk_Notification_title": {
+		"message": "While checked, enable notifications when EzTwitch detects stream is going live.&#13;While unchecked, disable all the notifications."
+	},
+	"label_chk_Notification": {
+		"message": "Live stream notifications"
+	},
+	"label_chk_vPopout_title": {
+		"message": "While checked, EzTwitch will open stream video in popout window individually.&#13;While unchecked, EzTwitch will open streams in new tab as usual."
+	},
+	"label_chk_vPopout": {
+		"message": "Open stream video in popout window"
+	},
+	"label_chk_cPopout_title": {
+		"message": "While checked, EzTwitch will open stream chat in popout window individually.&#13;While unchecked, EzTwitch will not popout chat."
+	},
+	"label_chk_cPopout": {
+		"message": "Open stream chat in popout window"
+	},
+	"label_num_PSH_title": {
+		"message": "Set the Width x Height for popout stream video window."
+	},
+	"label_num_PSH": {
+		"message": "Popout stream window size"
+	},
+	"num_PSW_title": {
+		"message": "Set the Width for popout stream video window."
+	},
+	"num_PSH_title": {
+		"message": "Set the Height for popout stream video window."
+	},
+	"PSDefault_title": {
+		"message": "Reset the popout stream video window size to default: 1028x600"
+	},
+	"PSDefault": {
+		"message": "Default"
+	},
+	"label_num_PCH_title": {
+		"message": "Set the Width x Height for popout stream chat window."
+	},
+	"label_num_PCH": {
+		"message": "Popout chat window size"
+	},
+	"num_PCW_title": {
+		"message": "Set the Width for popout stream chat window."
+	},
+	"num_PCH_title": {
+		"message": "Set the Height for popout stream chat window."
+	},
+	"PCDefault_title": {
+		"message": "Reset the popout stream chat window size to default: 400x600"
+	},
+	"PCDefault": {
+		"message": "Default"
+	},
+	"btn_save_title": {
+		"message": "Save all the settings in this Option page."
+	},
+	"btn_save": {
+		"message": "Save"
+	},
+	"msg_saved": {
+		"message": "✔ Saved!"
+	},
+	"option_note": {
+		"message": "Chrome does not support manual language selection for extensions.<br>To change EzTwitch display language, please change your Chrome browser language in Chrome Settings ( chrome://settings/languages )."
+	},
+	"twitch_settings": {
+		"message": "Twitch Settings"
+	},
+	"popout_settings": {
+		"message": "Popout Settings"
+	},
+	"changelog_title": {
+		"message": "Changelog"
+	},
+	"clog_101_1": {
+		"message": "Fix the description in Chrome Store page."
+	},
+	"clog_101_2": {
+		"message": "Now support Simplified Chinese."
+	},
+	"clog_100_1": {
+		"message": "First release."
+	},
+	"clog_110_1": {
+		"message": "Separated video and chat popout settings."
+	},
+	"clog_110_2": {
+		"message": "Old style Twitch popout option."
+	},
+	"clog_110_3": {
+		"message": "Add Changelog, now you can see what's new!"
+	},
+	"clog_110_4": {
+		"message": "Add About for extension and dev info."
+	},
+	"label_chk_oldPopout": {
+		"message": "Use the old Twitch popout"
+	},
+	"label_chk_oldPopout_title": {
+		"message": "Instead of using the new Twitch popout, check this to use the old Twitch popout window."
+	},
+	"about_title": {
+		"message": "About"
+	},
+	"settings_title": {
+		"message": "Settings"
+	},
+	"about_info_note": {
+		"message": "Thanks for using EzTwitch.  This is an open source project created by Howar31 and hosted on GitHub.  Welcome to give any review, problem report or suggestion in Chrome Web Store support page."
+	},
+	"about_info_title_1": {
+		"message": "Chrome Web Store"
+	},
+	"about_info_title_2": {
+		"message": "GitHub"
+	},
+	"about_info_title_3": {
+		"message": "Developer Website"
+	},
+	"donate_title": {
+		"message": "Donation"
+	},
+	"aboute_donate_note_1": {
+		"message": "EzTwitch is a totally free Chrome extension.  You do not need to pay anything to get everything.  And there is also no 3rd party ads in EzTwitch."
+	},
+	"aboute_donate_note_2": {
+		"message": "However, if you like my work, you may support me via Paypal donation.  You can decide the amount of donation.  And I am really appreciate for your generosity! (∩´∀`∩)"
+	},
+	"donate_btn_img": {
+		"message": "https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif"
+	},
+	"donate_btn_alt": {
+		"message": "Donate to EzTwitch via Paypal!"
+	},
+	"donate_btn_title": {
+		"message": "Thanks for your donation!"
+	}
+}
