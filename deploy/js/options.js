@@ -6,22 +6,36 @@
 	var chk_Notification_val;
 	var chk_vPopout_val;
 	var chk_cPopout_val;
+	var chk_vPanel_val;
+	var chk_cPanel_val;
 	var chk_oldPopout_val;
+	var chk_HTML5Popout_val;
 	var num_PSH_val;
 	var num_PSW_val;
 	var num_PCH_val;
 	var num_PCW_val;
+	var num_PnSH_val;
+	var num_PnSW_val;
+	var num_PnCH_val;
+	var num_PnCW_val;
 
 	function save() {
 		localStorage.OptionTwitchID = txt_TwitchIDInput.value;	
 		localStorage.showNotifications = chk_Notification_val.checked;		
 		localStorage.OptionvPopout = chk_vPopout_val.checked;
 		localStorage.OptioncPopout = chk_cPopout_val.checked;
+		localStorage.OptionvPanel = chk_vPanel_val.checked;
+		localStorage.OptioncPanel = chk_cPanel_val.checked;
 		localStorage.OptionoldPopout = chk_oldPopout_val.checked;
+		localStorage.OptionHTML5Popout = chk_HTML5Popout_val.checked;
 		localStorage.OptionPSH = num_PSH_val.value;
 		localStorage.OptionPSW = num_PSW_val.value;
 		localStorage.OptionPCH = num_PCH_val.value;
 		localStorage.OptionPCW = num_PCW_val.value;
+		localStorage.OptionPnSH = num_PnSH_val.value;
+		localStorage.OptionPnSW = num_PnSW_val.value;
+		localStorage.OptionPnCH = num_PnCH_val.value;
+		localStorage.OptionPnCW = num_PnCW_val.value;
 
 //		var msg_saved = document.getElementById("msg_saved");
 //		msg_saved.style.opacity = 1;
@@ -74,20 +88,35 @@
 		if (OptioncPopout) {
 			chk_cPopout_val.checked = true;
 		}
+		chk_vPanel_val = document.getElementById("chk_vPanel");
+		var OptionvPanel = (localStorage.OptionvPanel === "true");
+		if (OptionvPanel) {
+			chk_vPanel_val.checked = true;
+		}
+		chk_cPanel_val = document.getElementById("chk_cPanel");
+		var OptioncPanel = (localStorage.OptioncPanel === "true");
+		if (OptioncPanel) {
+			chk_cPanel_val.checked = true;
+		}
 		chk_oldPopout_val = document.getElementById("chk_oldPopout");
 		var OptionoldPopout = (localStorage.OptionoldPopout === "true");
 		if (OptionoldPopout) {
 			chk_oldPopout_val.checked = true;
 		}
+		chk_HTML5Popout_val = document.getElementById("chk_HTML5Popout");
+		var OptionHTML5Popout = (localStorage.OptionHTML5Popout === "true");
+		if (OptionHTML5Popout) {
+			chk_HTML5Popout_val.checked = true;
+		}
 
 		num_PSW_val = document.getElementById("num_PSW");
 		var OptionPSW = localStorage.OptionPSW;
-		num_PSW_val.value = (OptionPSW) ? OptionPSW : 1028;
+		num_PSW_val.value = (OptionPSW) ? OptionPSW : 1014;
 		num_PSH_val = document.getElementById("num_PSH");
 		var OptionPSH = localStorage.OptionPSH;
 		num_PSH_val.value = (OptionPSH) ? OptionPSH : 600;
 		document.getElementById("PSDefault").onclick = function() {
-			num_PSW_val.value = 1028;
+			num_PSW_val.value = 1014;
 			num_PSH_val.value = 600;
 		}
 
@@ -100,6 +129,28 @@
 		document.getElementById("PCDefault").onclick = function() {
 			num_PCW_val.value = 400;
 			num_PCH_val.value = 600;
+		}
+
+		num_PnSW_val = document.getElementById("num_PnSW");
+		var OptionPnSW = localStorage.OptionPnSW;
+		num_PnSW_val.value = (OptionPnSW) ? OptionPnSW : 646;
+		num_PnSH_val = document.getElementById("num_PnSH");
+		var OptionPnSH = localStorage.OptionPnSH;
+		num_PnSH_val.value = (OptionPnSH) ? OptionPnSH : 400;
+		document.getElementById("PnSDefault").onclick = function() {
+			num_PnSW_val.value = 646;
+			num_PnSH_val.value = 400;
+		}
+
+		num_PnCW_val = document.getElementById("num_PnCW");
+		var OptionPnCW = localStorage.OptionPnCW;
+		num_PnCW_val.value = (OptionPnCW) ? OptionPnCW : 400;
+		num_PnCH_val = document.getElementById("num_PnCH");
+		var OptionPnCH = localStorage.OptionPnCH;
+		num_PnCH_val.value = (OptionPnCH) ? OptionPnCH : 540;
+		document.getElementById("PnCDefault").onclick = function() {
+			num_PnCW_val.value = 400;
+			num_PnCH_val.value = 540;
 		}
 
 		var btns_save = document.getElementsByClassName("btn_save");

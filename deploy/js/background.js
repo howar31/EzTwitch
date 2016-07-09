@@ -15,10 +15,16 @@
 	var OptionTwitchID;
 	var OptionvPopout;
 	var OptioncPopout;
+	var OptionvPanel;
+	var OptioncPanel;
 	var OptionPSH;
 	var OptionPSW;
 	var OptionPCH;
 	var OptionPCW;
+	var OptionPnSH;
+	var OptionPnSW;
+	var OptionPnCH;
+	var OptionPnCW;
 	var pendingNotifications = {};
 	
 	function updateBadge(text, color) {
@@ -40,22 +46,87 @@
 		popup = p;
 	}
 	
-	function openStream(theID) {
-		if (localStorage.OptionvPopout === "true") {
+	function openStream(theID, opmode) {
+		// Open Mode: vtab, vpopout, vpanel, cpopout, cpanel or default
+		opmode = (typeof opmode === 'undefined') ? 'default' : opmode;
+
+		// Open video in popout
+		if ((localStorage.OptionvPopout === "true" && opmode == "default") || opmode == "vpopout") {
 			if (localStorage.OptionoldPopout === "true") {
-				var url = "http://www.twitch.tv/" + theID + "/popout";
+				if (localStorage.OptionHTML5Popout === "true") {
+					var url = "http://www.twitch.tv/" + theID + "/popout?html5";
+				} else {
+					var url = "http://www.twitch.tv/" + theID + "/popout";
+				}
 			} else {
-				var url = "http://player.twitch.tv/?channel=" + theID;
+				if (localStorage.OptionHTML5Popout === "true") {
+					var url = "http://player.twitch.tv/?channel=" + theID + "&html5";
+				} else {
+					var url = "http://player.twitch.tv/?channel=" + theID;
+				}
 			}
-			chrome.windows.create({url: url, width: parseInt(localStorage["OptionPSW"]), height: parseInt(localStorage["OptionPSH"]), type: "popup", focused: true});
-		} else {
-//			var url = decodeURIComponent($(this).attr("data-url"));
-			var url = "http://www.twitch.tv/" + theID;
+			chrome.windows.create({
+				url: url, 
+				width: parseInt(localStorage["OptionPSW"]), 
+				height: parseInt(localStorage["OptionPSH"]), 
+				type: "popup", 
+				focused: true
+			});
+		}
+		// Open video in panel
+		if ((localStorage.OptionvPanel === "true" && opmode == "default") || opmode == "vpanel") {
+			if (localStorage.OptionoldPopout === "true") {
+				if (localStorage.OptionHTML5Popout === "true") {
+					var url = "http://www.twitch.tv/" + theID + "/popout?html5";
+				} else {
+					var url = "http://www.twitch.tv/" + theID + "/popout";
+				}
+			} else {
+				if (localStorage.OptionHTML5Popout === "true") {
+					var url = "http://player.twitch.tv/?channel=" + theID + "&html5";
+				} else {
+					var url = "http://player.twitch.tv/?channel=" + theID;
+				}
+			}
+			chrome.windows.create({
+				url: url,
+				width: parseInt(localStorage["OptionPnSW"]), 
+				height: parseInt(localStorage["OptionPnSH"]), 
+				type: "panel", 
+				focused: true
+			});
+		}
+		// Open video in tab
+		if ((localStorage.OptionvPopout != "true" && localStorage.OptionvPanel != "true" && opmode == "default") || opmode == "vtab") {
+			if (localStorage.OptionHTML5Popout === "true") {
+				var url = "http://www.twitch.tv/" + theID + "?html5";
+			} else {
+				var url = "http://www.twitch.tv/" + theID;
+			}
 			chrome.tabs.create({url: url});
 		}
-		if (localStorage.OptioncPopout === "true") {
+
+		// Open chat in popout
+		if ((localStorage.OptioncPopout === "true" && opmode == "default") || opmode == "cpopout") {
 			var url = "http://www.twitch.tv/chat/embed?channel=" + theID + "&popout_chat=true";
-			chrome.windows.create({url: url, width: parseInt(localStorage["OptionPCW"]), height: parseInt(localStorage["OptionPCH"]), type: "popup", focused: true});
+			chrome.windows.create({
+				url: url, 
+				width: parseInt(localStorage["OptionPCW"]), 
+				height: parseInt(localStorage["OptionPCH"]), 
+				type: "popup", 
+				focused: true
+			});
+		}
+		// Open chat in panel
+		if ((localStorage.OptioncPanel === "true" && opmode == "default") || opmode == "cpanel") {
+			var url = "http://www.twitch.tv/chat/embed?channel=" + theID + "&popout_chat=true";
+			chrome.windows.create({
+				url: url, 
+				width: parseInt(localStorage["OptionPnCW"]), 
+				height: parseInt(localStorage["OptionPnCH"]), 
+				type: "panel", 
+				focused: true
+			});
 		}
 	}
 
@@ -89,32 +160,44 @@
 		var dateStr = new Date().toUTCString();
 
 		if (newStreams.length) {			
-			if ((localStorage.showNotifications === "true")) {				
+			if ((localStorage.showNotifications === "true")) {
 				for (var i = 0; i < newStreams.length; i++) {
-					var options = {
-						type: "basic",
-						iconUrl: newStreams[i].channel.logo,
-						title: newStreams[i].channel.display_name,
-						message: "is playing " + newStreams[i].game,
-						contextMessage: newStreams[i].channel.url
-					};
-					var listeners = {
-							onButtonClicked: function(btnIdx) {
-									if (btnIdx === 0) {
-//											console.log(dateStr + ' - Clicked: "yes"');
-									} else if (btnIdx === 1) {
-//											console.log(dateStr + ' - Clicked: "no"');
-									}
-							},
-							onClicked: function(notifId) {
-									openStream(notifId);
-//									console.log(dateStr + ' - Clicked: "message-body"');
-							},
-							onClosed: function(byUser) {
-//									console.log(dateStr + ' - Closed: ' + (byUser ? 'by user' : 'automagically (!?)'));
+
+					var xhr = [];
+					for (var i = 0; i < newStreams.length; i++) {
+						var options = {
+							type: "basic",
+							title: newStreams[i].channel.display_name,
+							message: "is playing " + newStreams[i].game,
+							contextMessage: newStreams[i].channel.url
+						};
+						var listeners = {
+								onButtonClicked: function(btnIdx) {
+										if (btnIdx === 0) {
+										} else if (btnIdx === 1) {
+										}
+								},
+								onClicked: function(notifId) {
+										openStream(notifId);
+								},
+								onClosed: function(byUser) {
+								}
+						};
+
+						(function (i, url, options, listeners, cname){
+							xhr[i] = new XMLHttpRequest();
+							xhr[i].open("GET", url, true);
+							xhr[i].responseType = "blob";
+							xhr[i].onreadystatechange = function() {
+								if (xhr[i].readyState == 4 && xhr[i].status == 200) {
+									options.iconUrl = window.URL.createObjectURL(xhr[i].response);
+									createNotification(options, listeners, cname);
+								}
 							}
-					};
-					createNotification(options, listeners, newStreams[i].channel.name);
+							xhr[i].send(null);
+						})(i, newStreams[i].channel.logo, options, listeners, newStreams[i].channel.name);
+					}
+
 				}
 			}
 		}
@@ -135,31 +218,19 @@
 	function createNotification(details, listeners, notifId) {
 			(notifId !== undefined) || (notifId = "");
 			chrome.notifications.create(notifId, details, function(id) {
-//					console.log('Created notification "' + id + '" !');
 					if (pendingNotifications[id] !== undefined) {
-//						clearTimeout(pendingNotifications[id].timer);
 					}
 
 					pendingNotifications[id] = {
 							listeners: listeners
-//						timer: setTimeout(function() {
-//								console.log('Re-spawning notification "' + id + '"...');
-//								destroyNotification(id, function(wasCleared) {
-//										if (wasCleared) {
-//												createNotification(details, listeners, id);
-//										}
-//								});
-//						}, 9000)
 					};
 			});
 	}
 	function destroyNotification(notifId, callback) {
 			if (pendingNotifications[notifId] !== undefined) {
-					// clearTimeout(pendingNotifications[notifId].timer);
 					delete(pendingNotifications[notifId]);
 			}
 			chrome.notifications.clear(notifId, function(wasCleared) {
-//					console.log('Destroyed notification "' + notifId + '" !');
 					callback && callback(wasCleared);
 			});
 	}
@@ -251,7 +322,7 @@
 		
 		channels = channels.concat(tmp);
 		
-		if (tmp.length === var_StreamLimit) {			
+		if (tmp.length === var_StreamLimit) {
 			if (!channels.length) {
 				return;
 			}			
@@ -303,6 +374,11 @@
 		loadID();
 	};
 
+	function Test (arg, arg2) {
+		console.log("--- Test Start ---");
+		console.log("--- Test End ---");
+	}
+
 	function onInterval() {
 		updateData();
 	}
@@ -319,6 +395,7 @@
 	window.setPopup = setPopup;
 	window.getStreams = getStreams;
 	window.updateData = updateData;
+	window.Test = Test;
 	window.openStream = openStream;
 	window.localizeHtmlPage = localizeHtmlPage;
 

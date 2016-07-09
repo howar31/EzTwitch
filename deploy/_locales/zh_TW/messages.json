@@ -14,6 +14,9 @@
    "btn_options": {
       "message": "<a class='btn_options' href='#' title='到選項頁面'>選項</a>"
    },
+   "btn_options_title": {
+      "message": "點此開啟套件選項"
+   },
    "copyright": {
       "message": "EzTwitch © 2016 <a href='http://howar31.com/' target='_blank'>Howar31</a> All Rights Reserved"
    },
@@ -56,6 +59,21 @@
    "stream_entry_viewers": {
       "message": "目前觀眾數"
    },
+   "custom_menu_vtab": {
+      "message": "在新分頁開啟"
+   },
+   "custom_menu_vpopout": {
+      "message": "在彈出視窗開啟實況"
+   },
+   "custom_menu_vpanel": {
+      "message": "在面板開啟實況"
+   },
+   "custom_menu_cpopout": {
+      "message": "在彈出視窗開啟聊天"
+   },
+   "custom_menu_cpanel": {
+      "message": "在面板開啟聊天"
+   },
    "label_txt_TwitchID_title": {
       "message": "EzTwitch 會檢查這個 Twitch ID 的追隨頻道清單。&#13;不需要登入，只要將 ID 輸入在這，剩下的工作會由 EzTwitch 自動完成。"
    },
@@ -66,19 +84,31 @@
       "message": "當勾選時， EzTwitch 會在實況開台的時候跳出通知訊息。&#13;未勾選時，關閉所有通知訊息。"
    },
    "label_chk_Notification": {
-      "message": "實況開台通知"
+      "message": "開啟實況開台通知"
    },
    "label_chk_vPopout_title": {
-      "message": "當勾選時， EzTwitch 在開啟實況時會使用彈出視窗開啟實況畫面。&#13;未勾選時， EzTwitch 將會像一般一樣在新分頁開啟實況。"
+      "message": "當勾選時， EzTwitch 會使用彈出視窗開啟實況畫面。"
    },
    "label_chk_vPopout": {
       "message": "使用彈出視窗開啟實況"
    },
-   "label_chk_vPopout_title": {
-      "message": "當勾選時， EzTwitch 在開啟實況時會使用彈出視窗開啟聊天室。&#13;未勾選時， EzTwitch 將不會彈出聊天室。"
+   "label_chk_cPopout_title": {
+      "message": "當勾選時， EzTwitch 會使用彈出視窗開啟聊天室。"
    },
-   "label_chk_vPopout": {
-      "message": "使用彈出視窗開啟實況"
+   "label_chk_cPopout": {
+      "message": "使用彈出視窗開啟聊天"
+   },
+   "label_chk_vPanel_title": {
+      "message": "當勾選時， EzTwitch 會使用面板開啟實況畫面。"
+   },
+   "label_chk_vPanel": {
+      "message": "使用面板開啟實況"
+   },
+   "label_chk_cPanel_title": {
+      "message": "當勾選時， EzTwitch 會使用面板開啟聊天室。"
+   },
+   "label_chk_cPanel": {
+      "message": "使用面板開啟聊天"
    },
    "label_num_PSH_title": {
       "message": "設定實況畫面彈出視窗的 寬 x 高。"
@@ -93,9 +123,27 @@
       "message": "設定實況畫面彈出視窗的高度。"
    },
    "PSDefault_title": {
-      "message": "將實況畫面彈出視窗還原為預設大小: 1028x600"
+      "message": "將實況畫面彈出視窗還原為預設大小: 1014x600"
    },
    "PSDefault": {
+      "message": "預設"
+   },
+   "label_num_PnSH_title": {
+      "message": "設定實況畫面面板的 寬 x 高。&#13;Chrome 面板預設開啟大小限制為 80x46 至 672x540 ，若設定數值超過此區間，面板大小可能不會使用設定的數值。"
+   },
+   "label_num_PnSH": {
+      "message": "實況畫面面板大小"
+   },
+   "num_PnSW_title": {
+      "message": "設定實況畫面面板的寬度。"
+   },
+   "num_PnSH_title": {
+      "message": "設定實況畫面面板的高度。"
+   },
+   "PnSDefault_title": {
+      "message": "將實況畫面面板還原為預設大小: 646x400"
+   },
+   "PnSDefault": {
       "message": "預設"
    },
    "label_num_PCH_title": {
@@ -111,10 +159,40 @@
       "message": "設定聊天室彈出視窗的高度。"
    },
    "PCDefault_title": {
-      "message": "將聊天室彈出視窗還原為預設大小: 400x600"
+      "message": "將聊天室彈出視窗還原為預設大小: 400x540"
    },
    "PCDefault": {
       "message": "預設"
+   },
+   "label_num_PnCH_title": {
+      "message": "設定聊天室面板的 寬 x 高。&#13;Chrome 面板預設開啟大小限制為 80x46 至 672x540 ，若設定數值超過此區間，面板大小可能不會使用設定的數值。"
+   },
+   "label_num_PnCH": {
+      "message": "聊天室的面板大小"
+   },
+   "num_PnCW_title": {
+      "message": "設定聊天室面板的寬度。"
+   },
+   "num_PnCH_title": {
+      "message": "設定聊天室面板的高度。"
+   },
+   "PnCDefault_title": {
+      "message": "將聊天室面板還原為預設大小: 400x540"
+   },
+   "PnCDefault": {
+      "message": "預設"
+   },
+   "label_chk_oldPopout": {
+      "message": "[相容性] 使用舊的彈出視窗網址"
+   },
+   "label_chk_oldPopout_title": {
+      "message": "使用舊的彈出視窗網址。&#13;Twitch 官方已經正式廢除舊網址，所有舊網址應該都會自動導向到新的彈出視窗網址，不過我保留這個選項，如果你的彈出視窗有問題，可以勾選這個選項試試看。"
+   },
+   "label_chk_HTML5Popout": {
+      "message": "使用 HTML5 播放器"
+   },
+   "label_chk_HTML5Popout_title": {
+      "message": "使用 HTML5 播放器取代 Flash 播放器，以降低 CPU 及 RAM 的使用率，若使用網頁新分頁，此選項無效。"
    },
    "btn_save_title": {
       "message": "儲存這個選項頁面上的所有設定。"
@@ -125,17 +203,32 @@
    "msg_saved": {
       "message": "✔ 已儲存！"
    },
+   "v_popout_note": {
+      "message": "如果彈出視窗與面板兩個選項都沒有勾選，則實況會在新分頁開啟。"
+   },
+   "c_popout_note": {
+      "message": "聊天與實況的設定不同，這裡如果彈出視窗與面板兩個選項都沒有勾選，則 EzTwitch 就不會開啟任何聊天視窗。<br>所以你可以設定成在新分頁開啟實況、同時在面板開啟聊天，或是在面板開啟實況、在彈出視窗開啟聊天！"
+   },
+   "panel_note": {
+      "message": "要使用 Chrome 的面板功能，請至設定 <a href='chrome://flags/#enable-panels' title='由於安全因素， Chrome 禁止擴充套件直接開啟 chrome:// 的連結&#13;請按右鍵複製連結網址，再將網址手動貼在網址列上。'>chrome://flags/#enable-panels</a> 將選項設定為 <b>已啟用</b> ，否則 Chrome 無法使用面板，會以彈出視窗代替面板的功能。"
+   },
    "option_note": {
       "message": "Chrome 不支援手動切換擴充套件的語言。<br>要切換 EzTwitch 的顯示語言，請到 Chrome 設定 ( chrome://settings/languages ) 中修改 Chrome 瀏覽器的介面語言"
    },
    "twitch_settings": {
       "message": "Twitch 設定"
    },
-   "popout_settings": {
-      "message": "彈出視窗設定"
+   "v_popout_settings": {
+      "message": "實況設定"
+   },
+   "c_popout_settings": {
+      "message": "聊天設定"
    },
    "changelog_title": {
       "message": "更新日誌"
+   },
+   "clog_100_1": {
+      "message": "初版上線"
    },
    "clog_101_1": {
       "message": "修正商店頁面敘述錯誤"
@@ -143,26 +236,29 @@
    "clog_101_2": {
       "message": "支援簡體中文"
    },
-   "clog_100_1": {
-      "message": "初版上線"
-   },
    "clog_110_1": {
       "message": "彈出實況畫面和聊天室分別設定"
    },
    "clog_110_2": {
       "message": "舊版彈出視窗選項"
    },
-   "clog_110_1": {
+   "clog_110_3": {
       "message": "新增更新日誌，現在你可以看到有什麼新功能了！"
    },
-   "clog_110_1": {
+   "clog_110_4": {
       "message": "新增關於，包含套件與開發者資訊"
    },
-   "label_chk_oldPopout": {
-      "message": "使用舊版的彈出視窗"
+   "clog_120_1": {
+      "message": "修正實況開台通知失效的問題"
    },
-   "label_chk_oldPopout_title": {
-      "message": "不使用新版的彈出視窗，勾選此選項以改用舊版的彈出視窗"
+   "clog_120_2": {
+      "message": "支援 HTML5 播放器，可在選項內開啟"
+   },
+   "clog_120_3": {
+      "message": "支援 Chrome 面板功能，讓你可以把實況和聊天室置頂或暫時縮小在螢幕底下！"
+   },
+   "clog_120_4": {
+      "message": "新增右鍵選單，可以暫時選用其他模式開啟實況，而不需要更改套件設定！"
    },
    "about_title": {
       "message": "關於"

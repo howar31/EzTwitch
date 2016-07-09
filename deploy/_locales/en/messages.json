@@ -14,6 +14,9 @@
 	"btn_options": {
 		"message": "<a class='btn_options' href='#' title='Go to Options'>Options</a>"
 	},
+	"btn_options_title": {
+		"message": "Click for options"
+	},
 	"copyright": {
 		"message": "EzTwitch © 2016 <a href='http://howar31.com/' target='_blank'>Howar31</a> All Rights Reserved"
 	},
@@ -56,6 +59,21 @@
 	"stream_entry_viewers": {
 		"message": "Current Viewers"
 	},
+	"custom_menu_vtab": {
+		"message": "Open in New Tab"
+	},
+	"custom_menu_vpopout": {
+		"message": "Open Stream in Popout Window"
+	},
+	"custom_menu_vpanel": {
+		"message": "Open Stream in Panel"
+	},
+	"custom_menu_cpopout": {
+		"message": "Open Chat in Popout Window"
+	},
+	"custom_menu_cpanel": {
+		"message": "Open Chat in Panel"
+	},
 	"label_txt_TwitchID_title": {
 		"message": "EzTwitch will check this Twitch ID's following channels.&#13;No need to login, just set the ID and EzTwitch will handle the other stuffs."
 	},
@@ -69,16 +87,28 @@
 		"message": "Live stream notifications"
 	},
 	"label_chk_vPopout_title": {
-		"message": "While checked, EzTwitch will open stream video in popout window individually.&#13;While unchecked, EzTwitch will open streams in new tab as usual."
+		"message": "While checked, EzTwitch will open stream video in popout window."
 	},
 	"label_chk_vPopout": {
 		"message": "Open stream video in popout window"
 	},
 	"label_chk_cPopout_title": {
-		"message": "While checked, EzTwitch will open stream chat in popout window individually.&#13;While unchecked, EzTwitch will not popout chat."
+		"message": "While checked, EzTwitch will open stream chat in popout window."
 	},
 	"label_chk_cPopout": {
 		"message": "Open stream chat in popout window"
+	},
+	"label_chk_vPanel_title": {
+		"message": "While checked, EzTwitch will open stream video in panel."
+	},
+	"label_chk_vPanel": {
+		"message": "Open stream video in panel"
+	},
+	"label_chk_cPanel_title": {
+		"message": "While checked, EzTwitch will open stream chat in panel."
+	},
+	"label_chk_cPanel": {
+		"message": "Open stream chat in panel"
 	},
 	"label_num_PSH_title": {
 		"message": "Set the Width x Height for popout stream video window."
@@ -93,9 +123,27 @@
 		"message": "Set the Height for popout stream video window."
 	},
 	"PSDefault_title": {
-		"message": "Reset the popout stream video window size to default: 1028x600"
+		"message": "Reset the popout stream video window size to default: 1014x600"
 	},
 	"PSDefault": {
+		"message": "Default"
+	},
+	"label_num_PnSH_title": {
+		"message": "Set the Width x Height for popout stream video panel.&#13;The Chrome Panel has size limit from 80x46 to 672x540 when first opening.  Any values exceed the range might not work properly."
+	},
+	"label_num_PnSH": {
+		"message": "Popout stream panel size"
+	},
+	"num_PnSW_title": {
+		"message": "Set the Width for popout stream video panel."
+	},
+	"num_PnSH_title": {
+		"message": "Set the Height for popout stream video panel."
+	},
+	"PnSDefault_title": {
+		"message": "Reset the popout stream video panel size to default: 646x400"
+	},
+	"PnSDefault": {
 		"message": "Default"
 	},
 	"label_num_PCH_title": {
@@ -116,6 +164,36 @@
 	"PCDefault": {
 		"message": "Default"
 	},
+	"label_num_PnCH_title": {
+		"message": "Set the Width x Height for popout stream chat panel.&#13;The Chrome Panel has size limit from 80x46 to 672x540 when first opening.  Any values exceed the range might not work properly."
+	},
+	"label_num_PnCH": {
+		"message": "Popout chat panel size"
+	},
+	"num_PnCW_title": {
+		"message": "Set the Width for popout stream chat panel."
+	},
+	"num_PnCH_title": {
+		"message": "Set the Height for popout stream chat panel."
+	},
+	"PnCDefault_title": {
+		"message": "Reset the popout stream chat panel size to default: 400x540"
+	},
+	"PnCDefault": {
+		"message": "Default"
+	},
+	"label_chk_oldPopout": {
+		"message": "[Compatibility] Use the old Twitch popout url"
+	},
+	"label_chk_oldPopout_title": {
+		"message": "Use the old Twitch popout url which was depricated by Twitch official.&#13;The old url should be redirected to the new one by Twitch.  But you can still try this if the popout is not working correctly."
+	},
+	"label_chk_HTML5Popout": {
+		"message": "Use HTML5 popout player"
+	},
+	"label_chk_HTML5Popout_title": {
+		"message": "Use HTML5 player instead of Flash Player to lower the CPU and RAM usage.  Not working if stream was opened in webpage or old popout."
+	},
 	"btn_save_title": {
 		"message": "Save all the settings in this Option page."
 	},
@@ -125,26 +203,38 @@
 	"msg_saved": {
 		"message": "✔ Saved!"
 	},
+	"v_popout_note": {
+		"message": "If both popout window and panel options are not checked, the stream will open in a new tab."
+	},
+	"c_popout_note": {
+		"message": "Unlike stream popout settings, if both popout window and panel options are not checked, EzTwitch will open nothing for chat.<br>So you can literally open a stream in new tab and it's chat in panel, or open a stream video in panel and it's chat in popout window!"
+	},
+	"panel_note": {
+		"message": "To use Chrome Panel, please go to <a href='chrome://flags/#enable-panels' title='Due to security reason, Chrome does not allow extension to open chrome:// link directly.&#13;Please right click to copy link and paste to address bar manually.'>chrome://flags/#enable-panels</a> and set it to <b>Enable</b>.  Otherwise, Chrome will open as popout window instead of panel."
+	},
 	"option_note": {
-		"message": "Chrome does not support manual language selection for extensions.<br>To change EzTwitch display language, please change your Chrome browser language in Chrome Settings ( chrome://settings/languages )."
+		"message": "Chrome does not support manual language selection for extensions.<br>To change EzTwitch display language, please change your Chrome browser language in <a href='chrome://settings/languages' title='Due to security reason, Chrome does not allow extension to open chrome:// link directly.&#13;Please right click to copy link and paste to address bar manually.'>chrome://settings/languages</a> ."
 	},
 	"twitch_settings": {
 		"message": "Twitch Settings"
 	},
-	"popout_settings": {
-		"message": "Popout Settings"
+	"v_popout_settings": {
+		"message": "Video Popout Settings"
+	},
+	"c_popout_settings": {
+		"message": "Chat Popout Settings"
 	},
 	"changelog_title": {
 		"message": "Changelog"
+	},
+	"clog_100_1": {
+		"message": "First release."
 	},
 	"clog_101_1": {
 		"message": "Fix the description in Chrome Store page."
 	},
 	"clog_101_2": {
 		"message": "Now support Simplified Chinese."
-	},
-	"clog_100_1": {
-		"message": "First release."
 	},
 	"clog_110_1": {
 		"message": "Separated video and chat popout settings."
@@ -158,11 +248,17 @@
 	"clog_110_4": {
 		"message": "Add About for extension and dev info."
 	},
-	"label_chk_oldPopout": {
-		"message": "Use the old Twitch popout"
+	"clog_120_1": {
+		"message": "Fix the live stream notification function."
 	},
-	"label_chk_oldPopout_title": {
-		"message": "Instead of using the new Twitch popout, check this to use the old Twitch popout window."
+	"clog_120_2": {
+		"message": "Now support HTML5 player.  Turn it on in Options."
+	},
+	"clog_120_3": {
+		"message": "Now support Chrome Panel.  Make your stream and chat stay on top or minimize with Chrome Panel!"
+	},
+	"clog_120_4": {
+		"message": "Added right click menu to temporarily override the open mode without the need for changing options!"
 	},
 	"about_title": {
 		"message": "About"

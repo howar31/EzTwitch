@@ -22,7 +22,7 @@ body {
 #header a.btn_options:after {
 	content: " - Options";
 	opacity: 0;
-	color: #CCCCCC;
+	color: #CCC;
 	font-size: 1rem;
 	transition: 1s;
 }
@@ -64,7 +64,7 @@ body {
 	font-size: 1rem;
 	padding-left: 5px;
 	padding-bottom: 3px;
-	background-color: #333333;
+	background-color: #333;
 	color: white;
 	transition: 0.3s;
 }
@@ -114,4 +114,37 @@ body {
 	white-space: nowrap;
 	text-align: right;
 	color: #6441A5;
+}
+
+
+.custom_menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: none;
+    border-radius: 5px;
+    white-space: nowrap;
+    background: #FFF;
+    color: #333;
+    padding: 0;
+    box-shadow: 1px 1px 2px #333;
+}
+.custom_menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+}
+.custom_menu li:hover {
+    background-color: rgba(185, 163, 227, 0.2);
+}
+.custom_menu hr {
+	margin: 5px 5px;
+	border: none;
+    border-top: 1px solid #CCC;
+}
+.custom_menu #custom_menu_header {	
+	background-color: #333;
+	color: white;
 }

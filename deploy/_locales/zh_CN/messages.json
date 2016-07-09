@@ -3,7 +3,7 @@
       "message": "EzTwitch"
    },
    "appDesc": {
-      "message": "轻量的 Twitch TV 扩展插件，提供开台通知以及弹出视频窗口的功能。"
+      "message": "轻量的 Twitch TV 扩展程序，提供开台通知以及弹出视频窗口的功能。"
    },
    "appOptions": {
       "message": "选项"
@@ -13,6 +13,9 @@
    },
    "btn_options": {
       "message": "<a class='btn_options' href='#' title='到选项页面'>选项</a>"
+   },
+   "btn_options_title": {
+      "message": "点此开启扩展程序选项"
    },
    "copyright": {
       "message": "EzTwitch © 2016 <a href='http://howar31.com/' target='_blank'>Howar31</a> All Rights Reserved"
@@ -24,7 +27,7 @@
       "message": "这是一个轻巧的 Twitch TV 套件，提供开台通知、追随频道列表、以及轻松弹出视频与聊天室窗口的功能。"
    },
    "msg_intro_p3_1": {
-      "message": "EzTwitch 不需要任何登入资讯，您只需要在 "
+      "message": "EzTwitch 不需要任何登入信息，您只需要在 "
    },
    "msg_intro_p3_2": {
       "message": " 中设定好 Twitch ID 即可，剩下的工作会由 EzTwitch 自动完成。"
@@ -56,29 +59,56 @@
    "stream_entry_viewers": {
       "message": "目前观众数"
    },
+   "custom_menu_vtab": {
+      "message": "在新标签页开启"
+   },
+   "custom_menu_vpopout": {
+      "message": "在弹出窗口开启实况"
+   },
+   "custom_menu_vpanel": {
+      "message": "在面板开启实况"
+   },
+   "custom_menu_cpopout": {
+      "message": "在弹出窗口开启聊天"
+   },
+   "custom_menu_cpanel": {
+      "message": "在面板开启聊天"
+   },
    "label_txt_TwitchID_title": {
       "message": "EzTwitch 会检查这个 Twitch ID 的追随频道清单。&#13;不需要登入，只要将 ID 输入在这，剩下的工作会由 EzTwitch 自动完成。"
    },
    "txt_TwitchID_title": {
-      "message": "只需要输入 Tiwtch ID 即可。&#13;EzTwitch 不需要密码或任何登入资讯。"
+      "message": "只需要输入 Tiwtch ID 即可。&#13;EzTwitch 不需要密码或任何登入信息。"
    },
    "label_chk_Notification_title": {
-      "message": "当勾选时， EzTwitch 会在实况开台的时候跳出通知讯息。&#13;未勾选时，关闭所有通知讯息。"
+      "message": "当勾选时， EzTwitch 会在实况开台的时候跳出通知信息。&#13;未勾选时，关闭所有通知信息。"
    },
    "label_chk_Notification": {
-      "message": "实况开台通知"
+      "message": "启用实况开台通知"
    },
    "label_chk_vPopout_title": {
-      "message": "当勾选时， EzTwitch 在开启实况时会使用弹出窗口开启视频画面。&#13;未勾选时， EzTwitch 将会像一般一样在新分页开启实况。"
+      "message": "当勾选时， EzTwitch 会使用弹出窗口开启视频画面。"
    },
    "label_chk_vPopout": {
       "message": "使用弹出窗口开启视频"
    },
    "label_chk_cPopout_title": {
-      "message": "当勾选时， EzTwitch 在开启实况时会使用弹出窗口开启聊天室。&#13;未勾选时， EzTwitch 将不会弹出聊天室。"
+      "message": "当勾选时， EzTwitch 会使用弹出窗口开启聊天室。"
    },
    "label_chk_cPopout": {
-      "message": "使用弹出窗口开启视频"
+      "message": "使用弹出窗口开启聊天"
+   },
+   "label_chk_vPanel_title": {
+      "message": "当勾选时， EzTwitch 会使用面板开启视频画面。"
+   },
+   "label_chk_vPanel": {
+      "message": "使用面板开启视频"
+   },
+   "label_chk_cPanel_title": {
+      "message": "当勾选时， EzTwitch 会使用面板开启聊天室。"
+   },
+   "label_chk_cPanel": {
+      "message": "使用面板开启聊天"
    },
    "label_num_PSH_title": {
       "message": "设定视频画面弹出窗口的 宽 x 高。"
@@ -93,9 +123,27 @@
       "message": "设定视频画面弹出窗口的高度。"
    },
    "PSDefault_title": {
-      "message": "将视频画面弹出窗口还原为预设大小: 1028x600"
+      "message": "将视频画面弹出窗口还原为预设大小: 1014x600"
    },
    "PSDefault": {
+      "message": "预设"
+   },
+   "label_num_PnSH_title": {
+      "message": "设定视频画面面板的 宽 x 高。&#13;Chrome 面板预设开启大小限制为 80x46 至 672x540 ，若设定数值超过此区间，面板大小可能不会使用设定的数值。"
+   },
+   "label_num_PnSH": {
+      "message": "视频画面面板大小"
+   },
+   "num_PnSW_title": {
+      "message": "设定视频画面面板的宽度。"
+   },
+   "num_PnSH_title": {
+      "message": "设定视频画面面板的高度。"
+   },
+   "PnSDefault_title": {
+      "message": "将视频画面面板还原为预设大小: 646x400"
+   },
+   "PnSDefault": {
       "message": "预设"
    },
    "label_num_PCH_title": {
@@ -116,6 +164,36 @@
    "PCDefault": {
       "message": "预设"
    },
+   "label_num_PnCH_title": {
+      "message": "设定聊天室面板的 宽 x 高。&#13;Chrome 面板预设开启大小限制为 80x46 至 672x540 ，若设定数值超过此区间，面板大小可能不会使用设定的数值。"
+   },
+   "label_num_PnCH": {
+      "message": "聊天室的面板大小"
+   },
+   "num_PnCW_title": {
+      "message": "设定聊天室面板的宽度。"
+   },
+   "num_PnCH_title": {
+      "message": "设定聊天室面板的高度。"
+   },
+   "PnCDefault_title": {
+      "message": "将聊天室面板还原为预设大小: 400x540"
+   },
+   "PnCDefault": {
+      "message": "预设"
+   },
+   "label_chk_oldPopout": {
+      "message": "[相容性] 使用旧的弹出窗口地址"
+   },
+   "label_chk_oldPopout_title": {
+      "message": "使用旧的弹出窗口地址。&#13;Twitch 官方已经正式废除旧地址，所有旧地址应该都会自动导向到新的弹出窗口地址，不过我保留这个选项，如果你的弹出窗口有问题，可以勾选这个选项试试看。"
+   },
+   "label_chk_HTML5Popout": {
+      "message": "使用 HTML5 播放器"
+   },
+   "label_chk_HTML5Popout_title": {
+      "message": "使用 HTML5 播放器取代 Flash 播放器，以降低 CPU 及 RAM 的使用率，若使用网页新标签页，此选项无效。"
+   },
    "btn_save_title": {
       "message": "储存这个选项页面上的所有设定。"
    },
@@ -125,26 +203,38 @@
    "msg_saved": {
       "message": "✔ 已储存！"
    },
+   "v_popout_note": {
+      "message": "如果弹出窗口与面板两个选项都没有勾选，则实况会在新标签页开启。"
+   },
+   "c_popout_note": {
+      "message": "聊天与实况的设定不同，这里如果弹出视窗与面板两个选项都没有勾选，则 EzTwitch 就不会开启任何聊天视窗。<br>所以你可以设定成在新标签页开启视频、同时在面板开启聊天，或是在面板开启视频、在弹出窗口开启聊天！"
+   },
+   "panel_note": {
+      "message": "要使用 Chrome 的面板功能，请至设定 <a href='chrome://flags/#enable-panels' title='由于安全因素， Chrome 禁止扩充套件直接开启 chrome:// 的连结&#13;请按右键复制连接地址，再将地址手动粘贴在地址栏上。'>chrome://flags/#enable-panels</a> 将选项设定为 <b>已启用</b> ，否则 Chrome 无法使用面板，会以弹出窗口代替面板的功能。"
+   },
    "option_note": {
-      "message": "Chrome 不支持手动切换扩展插件的语言。<br>要切换 EzTwitch 的显示语言，请到 Chrome 设定 ( chrome://settings/languages ) 中修改 Chrome 浏览器的介面语言"
+      "message": "Chrome 不支持手动切换扩展程序的语言。<br>要切换 EzTwitch 的显示语言，请到 Chrome 设定 ( chrome://settings/languages ) 中修改 Chrome 浏览器的介面语言"
    },
    "twitch_settings": {
       "message": "Twitch 设定"
    },
-   "popout_settings": {
-      "message": "弹出窗口设定"
+   "v_popout_settings": {
+      "message": "实况设定"
+   },
+   "c_popout_settings": {
+      "message": "聊天设定"
    },
    "changelog_title": {
       "message": "更新日志"
+   },
+   "clog_100_1": {
+      "message": "初版上线"
    },
    "clog_101_1": {
       "message": "修正商店页面叙述错误"
    },
    "clog_101_2": {
       "message": "支持简体中文"
-   },
-   "clog_100_1": {
-      "message": "初版上线"
    },
    "clog_110_1": {
       "message": "弹出视频和聊天窗口分别设定"
@@ -153,16 +243,22 @@
       "message": "旧版弹出窗口选项"
    },
    "clog_110_3": {
-      "message": "新增更新日志，现在你可以看到有什么新功能了！"
+      "message": "新增更新日志，现在你可以看到有什幺新功能了！"
    },
    "clog_110_4": {
-      "message": "新增关于，包含插件与开发者资讯"
+      "message": "新增关于，包含扩展程序与开发者信息"
    },
-   "label_chk_oldPopout": {
-      "message": "使用旧版的弹出窗口"
+   "clog_120_1": {
+      "message": "修正实况开台通知失效的问题"
    },
-   "label_chk_oldPopout_title": {
-      "message": "不使用新版的弹出窗口，勾选此选项以改用旧版的弹出窗口"
+   "clog_120_2": {
+      "message": "支持 HTML5 播放器，可在选项内开启"
+   },
+   "clog_120_3": {
+      "message": "支持 Chrome 面板功能，让你可以把视频和聊天室置顶或暂时缩小在屏幕底下！"
+   },
+   "clog_120_4": {
+      "message": "新增右键选单，可以暂时选用其他模式开启实况，而不需要更改扩展程序设定！"
    },
    "about_title": {
       "message": "关于"
@@ -186,10 +282,10 @@
       "message": "捐赠"
    },
    "aboute_donate_note_1": {
-      "message": "EzTwitch 是一个完全免费的 Chrome 扩展插件，不需要支付任何费用即可使用所有功能，并且 EzTwitch 没有第三方广告。"
+      "message": "EzTwitch 是一个完全免费的 Chrome 扩展程序，不需要支付任何费用即可使用所有功能，并且 EzTwitch 没有第三方广告。"
    },
    "aboute_donate_note_2": {
-      "message": "如果您喜欢我的插件，可以透过 Paypal 捐赠支持我，由您自行决定捐赠金额，十分感谢您的支持！ (∩´∀`∩)"
+      "message": "如果您喜欢我的扩展程序，可以透过 Paypal 捐赠支持我，由您自行决定捐赠金额，十分感谢您的支持！ (∩´∀`∩)"
    },
    "donate_btn_img": {
       "message": "https://www.paypal.com/zh_CN/i/btn/btn_donateCC_LG.gif"

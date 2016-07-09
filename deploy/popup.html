@@ -17,7 +17,8 @@
 	<script src="js/popup.js"></script>
 </head>
 <body>
-	<div id="header"><div class="logo"></div><a class="btn_options" href="#" title="Click for options">__MSG_appName__</a> <a id="btn_refresh" href="#" title="Refresh the stream list now">__MSG_btn_refresh__</a></div>
+	<!-- <a id="btn_test" href="#" title="TEST">TEST</a> -->
+	<div id="header"><div class="logo"></div><a class="btn_options" href="#" title="__MSG_btn_options_title__">__MSG_appName__</a> <a id="btn_refresh" href="#" title="Refresh the stream list now">__MSG_btn_refresh__</a></div>
 
 	<div class="msg" id="msg_intro">
 		<p>
@@ -52,5 +53,16 @@
 
 	<div id="footer">__MSG_copyright__</div>
 	<div class="float-twitch"></div>
+
+	<ul class="custom_menu">
+		<li id="custom_menu_header"></li>
+		<li id="custom_menu_vtab" data-action="vtab">__MSG_custom_menu_vtab__</li>
+		<hr>
+		<li id="custom_menu_vpopout" data-action="vpopout">__MSG_custom_menu_vpopout__</li>
+		<li id="custom_menu_vpanel" data-action="vpanel">__MSG_custom_menu_vpanel__</li>
+		<hr>
+		<li id="custom_menu_cpopout" data-action="cpopout">__MSG_custom_menu_cpopout__</li>
+		<li id="custom_menu_cpanel" data-action="cpanel">__MSG_custom_menu_cpanel__</li>
+	</ul>
 </body>
 </html>

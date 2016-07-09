@@ -12,6 +12,10 @@
 		$("#btn_refresh").text(chrome.i18n.getMessage("refreshing"));
 		background.updateData();
 	}
+
+	function onTestClick(e) {
+		background.Test();
+	}
 		
 	function sortGames(streams) {
 		var tmpHash = {};
@@ -92,7 +96,7 @@
 			var gameStreams = category[1];
 
 			for (var i = 0; i < gameStreams.length; i++) {
-				listHTML += "<div class='stream_entry' data-url='" + escape(gameStreams[i].channel.url) + "' data-name='" + gameStreams[i].channel.name + "'><div class='stream_entry_name' title='" + gameStreams[i].channel.name + "'>" + gameStreams[i].channel.display_name + "</div><div class='stream_entry_status' title='" + gameStreams[i].channel.status + "'>" + gameStreams[i].channel.status + "</div><div class='stream_entry_viewers' title='" + chrome.i18n.getMessage("stream_entry_viewers") + "'>" + gameStreams[i].viewers + "</div></a></div>";
+				listHTML += "<div class='stream_entry' data-url='" + escape(gameStreams[i].channel.url) + "' data-name='" + gameStreams[i].channel.name + "' data-dname='" + gameStreams[i].channel.display_name + "'><div class='stream_entry_name' title='" + gameStreams[i].channel.name + "'>" + gameStreams[i].channel.display_name + "</div><div class='stream_entry_status' title='" + gameStreams[i].channel.status + "'>" + gameStreams[i].channel.status + "</div><div class='stream_entry_viewers' title='" + chrome.i18n.getMessage("stream_entry_viewers") + "'>" + gameStreams[i].viewers + "</div></a></div>";
 			}
 			
 			listHTML += "</div>";
@@ -102,6 +106,22 @@
 		$(".stream_entry").bind("click", onChannelClick);		
 		$(".stream_game_title").bind("click", onGameTitleClick);		
 		$("#btn_refresh").text(chrome.i18n.getMessage("btn_refresh"));
+	}
+
+	function onContextClick(e) {
+		// This is the triggered action name
+		switch($(this).attr("data-action")) {			
+			// A case for each action. Your actions here
+			case "vtab":
+			case "vpopout":
+			case "vpanel":
+			case "cpopout":
+			case "cpanel":
+				background.openStream($(".custom_menu #custom_menu_header").attr("data-name"), $(this).attr("data-action"));
+				break;
+		}
+		// Hide it AFTER the action was triggered
+		$(".custom_menu").hide(100);
 	}
 	
 	$(document).ready(function () {
@@ -116,7 +136,10 @@
 		$("#msg_intro").hide();
 		$("#msg_refresh").hide();
 		$(".btn_options").bind("click", onOptionsClick);
+		$("#btn_test").bind("click", onTestClick);
 		$("#btn_refresh").bind("click", onRefreshClick);
+		// If the menu element is clicked
+		$(".custom_menu li").bind("mousedown", onContextClick);
 
 		if (!OptionTwitchID) {
 			$("#msg_intro").show();
@@ -128,6 +151,35 @@
 		setTimeout(function () {
 			$("#btn_refresh").blur();
 		}, 200);
+	});
+
+	// Right Click Menu
+	// Trigger action when the contexmenu is about to be shown
+	$(document).bind("contextmenu", function(e) {
+		// Avoid the real one
+		e.preventDefault();
+		// Show contextmenu
+		if ($(e.target).parents(".stream_entry").length > 0) {
+			$(".custom_menu #custom_menu_header").html($(e.target).parents(".stream_entry").attr("data-dname"));
+			$(".custom_menu #custom_menu_header").attr("data-url", $(e.target).parents(".stream_entry").attr("data-url"));
+			$(".custom_menu #custom_menu_header").attr("data-name", $(e.target).parents(".stream_entry").attr("data-name"));
+			$(".custom_menu #custom_menu_header").attr("data-dname", $(e.target).parents(".stream_entry").attr("data-dname"));
+			$(".custom_menu").finish().toggle(100).
+			// In the right position (the mouse)
+			css({
+				top: event.pageY + "px",
+				left: event.pageX + "px"
+			});
+		}
+	});
+
+	// If the document is clicked somewhere
+	$(document).bind("mousedown", function(e) {
+		// If the clicked element is not the menu
+		if (!$(e.target).parents(".custom_menu").length > 0) {
+			// Hide it
+			$(".custom_menu").hide(100);
+		}
 	});
 
 	window.updatePopup = updatePopup;
