@@ -260,6 +260,12 @@
 	"clog_120_4": {
 		"message": "Added right click menu to temporarily override the open mode without the need for changing options!"
 	},
+	"clog_121_1": {
+		"message": "HotFix right click menu overflow."
+	},
+	"clog_122_1": {
+		"message": "HotFix right click menu overflow by dynamically expand popup height."
+	},
 	"about_title": {
 		"message": "About"
 	},
