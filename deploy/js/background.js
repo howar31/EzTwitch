@@ -282,7 +282,10 @@
 			timeout: var_AJAXTimeout,
 			cache: false,
 			dataType: "json",
-			url: "https://api.twitch.tv/kraken/streams?channel=" + encodeURI(loginNameParams.toString())
+			url: "https://api.twitch.tv/kraken/streams?channel=" + encodeURI(loginNameParams.toString()),
+			headers: {
+				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+			}
 		});
 		
 		lastAjaxRequest.done(loadStreamSuccess);
@@ -297,6 +300,9 @@
 			timeout: var_AJAXTimeout,
 			dataType: "json",
 			url: url,
+			headers: {
+				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+			},
 			cache: false
 		});
 	

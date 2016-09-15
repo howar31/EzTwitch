@@ -266,6 +266,9 @@
    "clog_122_1": {
       "message": "快速修正使用動態擴展視窗高度，解決右鍵選單超出顯示範圍的問題"
    },
+   "clog_123_1": {
+      "message": "更新以符合 Twitch API 更動: Client-ID required for Kraken API calls"
+   },
    "about_title": {
       "message": "關於"
    },

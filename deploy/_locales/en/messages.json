@@ -266,6 +266,9 @@
 	"clog_122_1": {
 		"message": "HotFix right click menu overflow by dynamically expand popup height."
 	},
+	"clog_123_1": {
+		"message": "Update due to Twitch API changes: Client-ID required for Kraken API calls"
+	},
 	"about_title": {
 		"message": "About"
 	},
