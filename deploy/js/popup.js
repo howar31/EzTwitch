@@ -91,7 +91,7 @@
 			category = sortedStreams[j];
 			categoryName = category[0];
 			
-			listHTML += "<div class='stream_game'><div class='stream_game_title' title='" + chrome.i18n.getMessage("stream_game_title") + "' data-name='" + encodeURIComponent(categoryName) + "'>" + categoryName + "</div>";
+			listHTML += "<div class='stream_game'><div class='stream_game_title' title='" + chrome.i18n.getMessage("stream_game_title") + "' data-name='" + encodeURIComponent(categoryName.replace(/'/g, '\\\'');) + "'>" + categoryName + "</div>";
 			
 			var gameStreams = category[1];
 
