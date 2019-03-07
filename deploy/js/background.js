@@ -255,18 +255,18 @@
 
 	function loadStreamFailed(XMLHttpRequest, textStatus, errorThrown) {
 		lastAjaxRequest = null;
-		console.log("loadStreamFailed: " + XMLHttpRequest.responseText + " | " + new Date().toString());
-		console.log("XMLHttpRequest:", XMLHttpRequest);
-		console.log("textStatus:", textStatus);
-		console.log("errorThrown:", errorThrown);
+		console.error("loadStreamFailed: " + XMLHttpRequest.responseText + " | " + new Date().toString());
+		console.error("XMLHttpRequest:", XMLHttpRequest);
+		console.error("textStatus:", textStatus);
+		console.error("errorThrown:", errorThrown);
 	}
 
 	function onloadIDFailed(XMLHttpRequest, textStatus, errorThrown) {
 		lastAjaxRequest = null;
-		console.log("onloadIDFailed: " + XMLHttpRequest.responseText + " | " + new Date().toString());
-		console.log("XMLHttpRequest:", XMLHttpRequest);
-		console.log("textStatus:", textStatus);
-		console.log("errorThrown:", errorThrown);
+		console.error("onloadIDFailed: " + XMLHttpRequest.responseText + " | " + new Date().toString());
+		console.error("XMLHttpRequest:", XMLHttpRequest);
+		console.error("textStatus:", textStatus);
+		console.error("errorThrown:", errorThrown);
 	}
 
 	function loadStream() {
@@ -313,25 +313,13 @@
 	function onloadID(TwitchJSON) {
 		lastAjaxRequest = null;
 
-		offset += var_StreamLimit;
+		offset += var_StreamLimit - 1;
 
 		var tmp = TwitchJSON.follows;
 
-		if (!channels) {
-			console.log("onloadID : channels error");
-			return;
-		}
-
-		if (!tmp.length && !channels.length) {
-			return;
-		}
-
 		channels = channels.concat(tmp);
 
-		if (tmp.length === var_StreamLimit) {
-			if (!channels.length) {
-				return;
-			}
+		if (tmp.length > 0 && channels.length < TwitchJSON._total) {
 			loadID();
 		} else {
 			loadStream();

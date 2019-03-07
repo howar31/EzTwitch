@@ -272,6 +272,9 @@
 	"clog_124_1": {
 		"message": "Change the embed url to popout url for Dark Mode UI option."
 	},
+	"clog_124_2": {
+		"message": "Fix the issue that some live channels are not showing up."
+	},
 	"about_title": {
 		"message": "About"
 	},
