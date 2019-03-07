@@ -272,6 +272,9 @@
    "clog_124_1": {
       "message": "將彈出視窗的 URL 由 embed 改為 popout 以符合 Dark Mode UI"
    },
+   "clog_124_2": {
+      "message": "修正無法顯示所有 Twitch 頻道的問題"
+   },
    "about_title": {
       "message": "關於"
    },
