@@ -269,6 +269,9 @@
 	"clog_123_1": {
 		"message": "Update due to Twitch API changes: Client-ID required for Kraken API calls"
 	},
+	"clog_124_1": {
+		"message": "Change the embed url to popout url for Dark Mode UI option."
+	},
 	"about_title": {
 		"message": "About"
 	},

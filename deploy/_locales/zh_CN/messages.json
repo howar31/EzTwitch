@@ -269,6 +269,9 @@
    "clog_123_1": {
       "message": "更新以符合 Twitch API 更动: Client-ID required for Kraken API calls"
    },
+   "clog_124_1": {
+      "message": "将弹出视窗的 URL 由 embed 改为 popout 以符合 Dark Mode UI"
+   },
    "about_title": {
       "message": "关于"
    },

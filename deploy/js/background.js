@@ -1,13 +1,13 @@
 (function () {
 	"use strict";
-	
+
 	var var_StreamLimit = 100;
 	var var_AJAXTimeout = 1000 * 30;
 	var var_RefreshInterval = 1000 * 30;
 	var var_FetchURL = "https://api.twitch.tv/kraken/users/{0}/follows/channels?limit=" + var_StreamLimit + "&offset={1}";
 	var offset = 0;
 	var lastAjaxRequest;
-	var intervalId;	
+	var intervalId;
 	var streams;
 	var channels;
 	var popup;
@@ -26,26 +26,26 @@
 	var OptionPnCH;
 	var OptionPnCW;
 	var pendingNotifications = {};
-	
+
 	function updateBadge(text, color) {
 		chrome.browserAction.setBadgeBackgroundColor({color: color});
 		chrome.browserAction.setBadgeText({"text": text});
 	}
-	
+
 	function onStorageUpdate(e) {
 		if (e.key === "OptionTwitchID") {
 			OptionTwitchID = e.newValue;
 		}
 	}
-	
+
 	function getStreams() {
 		return streams;
 	}
-	
+
 	function setPopup(p) {
 		popup = p;
 	}
-	
+
 	function openStream(theID, opmode) {
 		// Open Mode: vtab, vpopout, vpanel, cpopout, cpanel or default
 		opmode = (typeof opmode === 'undefined') ? 'default' : opmode;
@@ -66,10 +66,10 @@
 				}
 			}
 			chrome.windows.create({
-				url: url, 
-				width: parseInt(localStorage["OptionPSW"]), 
-				height: parseInt(localStorage["OptionPSH"]), 
-				type: "popup", 
+				url: url,
+				width: parseInt(localStorage["OptionPSW"]),
+				height: parseInt(localStorage["OptionPSH"]),
+				type: "popup",
 				focused: true
 			});
 		}
@@ -90,9 +90,9 @@
 			}
 			chrome.windows.create({
 				url: url,
-				width: parseInt(localStorage["OptionPnSW"]), 
-				height: parseInt(localStorage["OptionPnSH"]), 
-				type: "panel", 
+				width: parseInt(localStorage["OptionPnSW"]),
+				height: parseInt(localStorage["OptionPnSH"]),
+				type: "panel",
 				focused: true
 			});
 		}
@@ -108,23 +108,23 @@
 
 		// Open chat in popout
 		if ((localStorage.OptioncPopout === "true" && opmode == "default") || opmode == "cpopout") {
-			var url = "http://www.twitch.tv/chat/embed?channel=" + theID + "&popout_chat=true";
+			var url = "https://www.twitch.tv/popout/" + theID + "/chat";
 			chrome.windows.create({
-				url: url, 
-				width: parseInt(localStorage["OptionPCW"]), 
-				height: parseInt(localStorage["OptionPCH"]), 
-				type: "popup", 
+				url: url,
+				width: parseInt(localStorage["OptionPCW"]),
+				height: parseInt(localStorage["OptionPCH"]),
+				type: "popup",
 				focused: true
 			});
 		}
 		// Open chat in panel
 		if ((localStorage.OptioncPanel === "true" && opmode == "default") || opmode == "cpanel") {
-			var url = "http://www.twitch.tv/chat/embed?channel=" + theID + "&popout_chat=true";
+			var url = "https://www.twitch.tv/popout/" + theID + "/chat";
 			chrome.windows.create({
-				url: url, 
-				width: parseInt(localStorage["OptionPnCW"]), 
-				height: parseInt(localStorage["OptionPnCH"]), 
-				type: "panel", 
+				url: url,
+				width: parseInt(localStorage["OptionPnCW"]),
+				height: parseInt(localStorage["OptionPnCH"]),
+				type: "panel",
 				focused: true
 			});
 		}
@@ -134,10 +134,10 @@
 		if (!oldStreams) {
 			return false;
 		}
-		
+
 		var hash = {};
 		var newStreams = [];
-		
+
 		for (var i = 0; i < oldStreams.length; i++) {
 			hash[oldStreams[i].channel.name] = true;
 		}
@@ -147,19 +147,19 @@
 				newStreams.push(streams[i]);
 			}
 		}
-		
+
 		return newStreams;
 	}
 
 	function loadStreamSuccess(TwitchJSON) {
-		lastAjaxRequest = null;		
+		lastAjaxRequest = null;
 		oldStreams = streams;
 		streams = TwitchJSON.streams;
-		
+
 		var newStreams = getNewStreams();
 		var dateStr = new Date().toUTCString();
 
-		if (newStreams.length) {			
+		if (newStreams.length) {
 			if ((localStorage.showNotifications === "true")) {
 				for (var i = 0; i < newStreams.length; i++) {
 
@@ -201,17 +201,17 @@
 				}
 			}
 		}
-		
-		var len = streams.length;		
+
+		var len = streams.length;
 		var badgeColor = [100, 65, 165, 255];
 		var badgeText = String(len);
-		
+
 		updateBadge(badgeText, badgeColor);
-		
+
 		if (popup) {
 			popup.updatePopup();
 		}
-		
+
 		channels = null;
 	}
 
@@ -260,7 +260,7 @@
 		console.log("textStatus:", textStatus);
 		console.log("errorThrown:", errorThrown);
 	}
-	
+
 	function onloadIDFailed(XMLHttpRequest, textStatus, errorThrown) {
 		lastAjaxRequest = null;
 		console.log("onloadIDFailed: " + XMLHttpRequest.responseText + " | " + new Date().toString());
@@ -268,10 +268,10 @@
 		console.log("textStatus:", textStatus);
 		console.log("errorThrown:", errorThrown);
 	}
-	
+
 	function loadStream() {
 		var loginNameParams = [];
-		
+
 		for (var i = 0; i < channels.length; i++) {
 			var channel = channels[i];
 			loginNameParams.push(channel.channel.name);
@@ -287,14 +287,14 @@
 				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
 			}
 		});
-		
+
 		lastAjaxRequest.done(loadStreamSuccess);
 		lastAjaxRequest.fail(loadStreamFailed);
 	}
-	
-	function loadID () {		
+
+	function loadID () {
 		var url = var_FetchURL.replace("{0}", encodeURI(OptionTwitchID)).replace("{1}", offset);
-		
+
 		lastAjaxRequest = $.ajax({
 			type: "GET",
 			timeout: var_AJAXTimeout,
@@ -305,39 +305,39 @@
 			},
 			cache: false
 		});
-	
+
 		lastAjaxRequest.done(onloadID);
 		lastAjaxRequest.fail(onloadIDFailed);
 	};
-	
+
 	function onloadID(TwitchJSON) {
 		lastAjaxRequest = null;
-		
+
 		offset += var_StreamLimit;
-		
+
 		var tmp = TwitchJSON.follows;
-		
+
 		if (!channels) {
 			console.log("onloadID : channels error");
 			return;
 		}
-		
+
 		if (!tmp.length && !channels.length) {
 			return;
 		}
-		
+
 		channels = channels.concat(tmp);
-		
+
 		if (tmp.length === var_StreamLimit) {
 			if (!channels.length) {
 				return;
-			}			
+			}
 			loadID();
 		} else {
 			loadStream();
 		}
 	}
-	
+
 	function localizeHtmlPage (objects) {
 		// Localize by replacing __MSG_***__ meta tags
 		for (var j = 0; j < objects.length; j++)
@@ -362,20 +362,20 @@
 			updateBadge("", [0, 0, 0, 0]);
 			return;
 		}
-		
+
 		if (intervalId) {
 			window.clearTimeout(intervalId);
 		}
-		
+
 		if (lastAjaxRequest) {
 			lastAjaxRequest.abort();
 			lastAjaxRequest = null;
 		}
-		
+
 		intervalId = window.setTimeout(onInterval, var_RefreshInterval);
 
 		offset = 0;
-		
+
 		channels = [];
 		loadID();
 	};
@@ -388,16 +388,16 @@
 	function onInterval() {
 		updateData();
 	}
-	
-	function init() {				
+
+	function init() {
 		updateBadge("", [0, 0, 0, 0]);
-		
+
 		OptionTwitchID = localStorage["OptionTwitchID"];
 		window.addEventListener("storage", onStorageUpdate);
-		
+
 		updateData();
 	}
-	
+
 	window.setPopup = setPopup;
 	window.getStreams = getStreams;
 	window.updateData = updateData;
