@@ -164,68 +164,92 @@
 		return result;
 	}
 
+	function ArrayToURL(array, url, urlParams) {
+		return url + urlParams + "=" + encodeURI(array.join("&" + urlParams + "="));
+	}
+
 	function loadStreamSuccess(TwitchJSON) {
 		lastAjaxRequest = null;
 		oldStreams = streams;
 		streams = UniqueObjectInArray(TwitchJSON.data, item => item.user_id);
 
-		var newStreams = getNewStreams();
-		var dateStr = new Date().toUTCString();
+		var gamesUrl = ArrayToURL(streams.map(value => value.game_id), "https://api.twitch.tv/helix/games?", "id");
 
-		if (newStreams.length) {
-			if ((localStorage.showNotifications === "true")) {
-				for (var i = 0; i < newStreams.length; i++) {
+		$.ajax({
+			type: "GET",
+			timeout: var_AJAXTimeout,
+			cache: false,
+			dataType: "json",
+			url: gamesUrl,
+			headers: {
+				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+			}
+		}).done(function(gamesJSON) {
+			gamesJSON.data.forEach(game => {
+				for (const stream of streams.filter((v) => v.game_id === game.id)) {
+					delete stream.game_id;
+					stream.game = game.name;
+				}
+			});
 
-					var xhr = [];
+			var newStreams = getNewStreams();
+			var dateStr = new Date().toUTCString();
+
+			if (newStreams.length) {
+				if ((localStorage.showNotifications === "true")) {
 					for (var i = 0; i < newStreams.length; i++) {
-						var options = {
-							type: "basic",
-							title: newStreams[i].channel.display_name,
-							message: "is playing " + newStreams[i].game,
-							contextMessage: newStreams[i].channel.url
-						};
-						var listeners = {
-								onButtonClicked: function(btnIdx) {
-										if (btnIdx === 0) {
-										} else if (btnIdx === 1) {
-										}
-								},
-								onClicked: function(notifId) {
-										openStream(notifId);
-								},
-								onClosed: function(byUser) {
-								}
-						};
 
-						(function (i, url, options, listeners, cname){
-							xhr[i] = new XMLHttpRequest();
-							xhr[i].open("GET", url, true);
-							xhr[i].responseType = "blob";
-							xhr[i].onreadystatechange = function() {
-								if (xhr[i].readyState == 4 && xhr[i].status == 200) {
-									options.iconUrl = window.URL.createObjectURL(xhr[i].response);
-									createNotification(options, listeners, cname);
+						var xhr = [];
+						for (var i = 0; i < newStreams.length; i++) {
+							var options = {
+								type: "basic",
+								title: newStreams[i].channel.display_name,
+								message: "is playing " + newStreams[i].game,
+								contextMessage: newStreams[i].channel.url
+							};
+							var listeners = {
+									onButtonClicked: function(btnIdx) {
+											if (btnIdx === 0) {
+											} else if (btnIdx === 1) {
+											}
+									},
+									onClicked: function(notifId) {
+											openStream(notifId);
+									},
+									onClosed: function(byUser) {
+									}
+							};
+
+							(function (i, url, options, listeners, cname){
+								xhr[i] = new XMLHttpRequest();
+								xhr[i].open("GET", url, true);
+								xhr[i].responseType = "blob";
+								xhr[i].onreadystatechange = function() {
+									if (xhr[i].readyState == 4 && xhr[i].status == 200) {
+										options.iconUrl = window.URL.createObjectURL(xhr[i].response);
+										createNotification(options, listeners, cname);
+									}
 								}
-							}
-							xhr[i].send(null);
-						})(i, newStreams[i].channel.logo, options, listeners, newStreams[i].channel.name);
+								xhr[i].send(null);
+							})(i, newStreams[i].channel.logo, options, listeners, newStreams[i].channel.name);
+						}
+
 					}
-
 				}
 			}
-		}
 
-		var len = streams.length;
-		var badgeColor = [100, 65, 165, 255];
-		var badgeText = String(len);
+			var len = streams.length;
+			var badgeColor = [100, 65, 165, 255];
+			var badgeText = String(len);
 
-		updateBadge(badgeText, badgeColor);
+			updateBadge(badgeText, badgeColor);
 
-		if (popup) {
-			popup.updatePopup();
-		}
+			if (popup) {
+				popup.updatePopup();
+			}
 
-		channels = null;
+			channels = null;
+		});
 	}
 
 	function createNotification(details, listeners, notifId) {
@@ -290,7 +314,7 @@
 			loginNameParams.push(channel.to_id);
 		}
 		
-		var streamUrl = "https://api.twitch.tv/helix/streams?user_id=" + encodeURI(loginNameParams.join("&user_id="));
+		var streamUrl = ArrayToURL(loginNameParams, "https://api.twitch.tv/helix/streams?", "user_id"); //"https://api.twitch.tv/helix/streams?user_id=" + encodeURI(loginNameParams.join("&user_id="));
 
 		lastAjaxRequest = $.ajax({
 			type: "GET",

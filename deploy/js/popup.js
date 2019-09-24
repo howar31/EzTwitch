@@ -22,7 +22,7 @@
 
 		for (var i = 0; i < streams.length; i++) {
 			var channel = streams[i].channel;
-			var game = streams[i].game_id;
+			var game = streams[i].game;
 			
 			if (!tmpHash[game]) {
 				tmpHash[game] = [];
