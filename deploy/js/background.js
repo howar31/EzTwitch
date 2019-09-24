@@ -151,10 +151,23 @@
 		return newStreams;
 	}
 
+	function UniqueObjectInArray(array, predicate) {
+		const result = [];
+		const map = new Map();
+		for (const item of array) {
+			var id = predicate(item);
+			if (!map.has(id)) {
+				map.set(id, true);    // set any value to Map
+				result.push(item);
+			}
+		}
+		return result;
+	}
+
 	function loadStreamSuccess(TwitchJSON) {
 		lastAjaxRequest = null;
 		oldStreams = streams;
-		streams = TwitchJSON.data;
+		streams = UniqueObjectInArray(TwitchJSON.data, item => item.user_id);
 
 		var newStreams = getNewStreams();
 		var dateStr = new Date().toUTCString();
