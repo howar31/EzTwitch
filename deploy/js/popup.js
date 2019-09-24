@@ -22,11 +22,7 @@
 
 		for (var i = 0; i < streams.length; i++) {
 			var channel = streams[i].channel;
-			var game = streams[i].game;
-			
-			if (!game) {
-				game = streams[i].category;
-			}
+			var game = streams[i].game_id;
 			
 			if (!tmpHash[game]) {
 				tmpHash[game] = [];
@@ -96,7 +92,7 @@
 			var gameStreams = category[1];
 
 			for (var i = 0; i < gameStreams.length; i++) {
-				listHTML += "<div class='stream_entry' data-url='" + escape(gameStreams[i].channel.url) + "' data-name='" + gameStreams[i].channel.name + "' data-dname='" + gameStreams[i].channel.display_name + "'><div class='stream_entry_name' title='" + gameStreams[i].channel.name + "'>" + gameStreams[i].channel.display_name + "</div><div class='stream_entry_status' title='" + gameStreams[i].channel.status + "'>" + gameStreams[i].channel.status + "</div><div class='stream_entry_viewers' title='" + chrome.i18n.getMessage("stream_entry_viewers") + "'>" + gameStreams[i].viewers + "</div></a></div>";
+				listHTML += "<div class='stream_entry' data-url='" + escape(gameStreams[i].user_name) + "' data-name='" + gameStreams[i].user_name + "' data-dname='" + gameStreams[i].user_name + "'><div class='stream_entry_name' title='" + gameStreams[i].user_name + "'>" + gameStreams[i].user_name + "</div><div class='stream_entry_status' title='" + gameStreams[i].title + "'>" + gameStreams[i].title + "</div><div class='stream_entry_viewers' title='" + chrome.i18n.getMessage("stream_entry_viewers") + "'>" + gameStreams[i].viewer_count + "</div></a></div>";
 			}
 			
 			listHTML += "</div>";

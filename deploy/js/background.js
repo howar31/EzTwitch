@@ -4,7 +4,7 @@
 	var var_StreamLimit = 100;
 	var var_AJAXTimeout = 1000 * 30;
 	var var_RefreshInterval = 1000 * 30;
-	var var_FetchURL = "https://api.twitch.tv/kraken/users/{0}/follows/channels?limit=" + var_StreamLimit + "&offset={1}";
+	var var_FetchURL = "https://api.twitch.tv/helix/users/follows?from_id={0}&limit=" + var_StreamLimit + "&offset={1}";
 	var offset = 0;
 	var lastAjaxRequest;
 	var intervalId;
@@ -139,11 +139,11 @@
 		var newStreams = [];
 
 		for (var i = 0; i < oldStreams.length; i++) {
-			hash[oldStreams[i].channel.name] = true;
+			hash[oldStreams[i].to_name] = true;
 		}
 
 		for (var i = 0; i < streams.length; i++) {
-			if (!hash.hasOwnProperty(streams[i].channel.name)) {
+			if (!hash.hasOwnProperty(streams[i].to_name)) {
 				newStreams.push(streams[i]);
 			}
 		}
@@ -154,7 +154,7 @@
 	function loadStreamSuccess(TwitchJSON) {
 		lastAjaxRequest = null;
 		oldStreams = streams;
-		streams = TwitchJSON.streams;
+		streams = TwitchJSON.data;
 
 		var newStreams = getNewStreams();
 		var dateStr = new Date().toUTCString();
@@ -274,15 +274,17 @@
 
 		for (var i = 0; i < channels.length; i++) {
 			var channel = channels[i];
-			loginNameParams.push(channel.channel.name);
+			loginNameParams.push(channel.to_id);
 		}
+		
+		var streamUrl = "https://api.twitch.tv/helix/streams?user_id=" + encodeURI(loginNameParams.join("&user_id="));
 
 		lastAjaxRequest = $.ajax({
 			type: "GET",
 			timeout: var_AJAXTimeout,
 			cache: false,
 			dataType: "json",
-			url: "https://api.twitch.tv/kraken/streams?channel=" + encodeURI(loginNameParams.toString()),
+			url: streamUrl,
 			headers: {
 				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
 			}
@@ -293,21 +295,35 @@
 	}
 
 	function loadID () {
-		var url = var_FetchURL.replace("{0}", encodeURI(OptionTwitchID)).replace("{1}", offset);
+		var idUrl = "https://api.twitch.tv/helix/users?login=" + encodeURI(OptionTwitchID);
 
-		lastAjaxRequest = $.ajax({
+		$.ajax({
 			type: "GET",
 			timeout: var_AJAXTimeout,
 			dataType: "json",
-			url: url,
+			url: idUrl,
 			headers: {
 				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
 			},
 			cache: false
-		});
+		}).done(function(idJSON) {
+			
+			var fetchUrl = var_FetchURL.replace("{0}", idJSON.data[0].id).replace("{1}", offset);
 
-		lastAjaxRequest.done(onloadID);
-		lastAjaxRequest.fail(onloadIDFailed);
+			lastAjaxRequest = $.ajax({
+				type: "GET",
+				timeout: var_AJAXTimeout,
+				dataType: "json",
+				url: fetchUrl,
+				headers: {
+					'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+				},
+				cache: false
+			});
+	
+			lastAjaxRequest.done(onloadID);
+			lastAjaxRequest.fail(onloadIDFailed);
+		});
 	};
 
 	function onloadID(TwitchJSON) {
@@ -315,11 +331,11 @@
 
 		offset += var_StreamLimit - 1;
 
-		var tmp = TwitchJSON.follows;
+		var tmp = TwitchJSON.data;
 
 		channels = channels.concat(tmp);
 
-		if (tmp.length > 0 && channels.length < TwitchJSON._total) {
+		if (tmp.length > 0 && channels.length < TwitchJSON.total) {
 			loadID();
 		} else {
 			loadStream();
