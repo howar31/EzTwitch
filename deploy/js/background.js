@@ -4,7 +4,7 @@
 	var var_StreamLimit = 100;
 	var var_AJAXTimeout = 1000 * 30;
 	var var_RefreshInterval = 1000 * 30;
-	var var_FetchURL = "https://api.twitch.tv/kraken/users/{0}/follows/channels?limit=" + var_StreamLimit + "&offset={1}";
+	var var_FetchURL = "https://api.twitch.tv/helix/users/follows?from_id={0}&limit=" + var_StreamLimit + "&offset={1}";
 	var offset = 0;
 	var lastAjaxRequest;
 	var intervalId;
@@ -139,11 +139,11 @@
 		var newStreams = [];
 
 		for (var i = 0; i < oldStreams.length; i++) {
-			hash[oldStreams[i].channel.name] = true;
+			hash[oldStreams[i].to_name] = true;
 		}
 
 		for (var i = 0; i < streams.length; i++) {
-			if (!hash.hasOwnProperty(streams[i].channel.name)) {
+			if (!hash.hasOwnProperty(streams[i].to_name)) {
 				newStreams.push(streams[i]);
 			}
 		}
@@ -151,68 +151,105 @@
 		return newStreams;
 	}
 
+	function UniqueObjectInArray(array, predicate) {
+		const result = [];
+		const map = new Map();
+		for (const item of array) {
+			var id = predicate(item);
+			if (!map.has(id)) {
+				map.set(id, true);    // set any value to Map
+				result.push(item);
+			}
+		}
+		return result;
+	}
+
+	function ArrayToURL(array, url, urlParams) {
+		return url + urlParams + "=" + encodeURI(array.join("&" + urlParams + "="));
+	}
+
 	function loadStreamSuccess(TwitchJSON) {
 		lastAjaxRequest = null;
 		oldStreams = streams;
-		streams = TwitchJSON.streams;
+		streams = UniqueObjectInArray(TwitchJSON.data, item => item.user_id);
 
-		var newStreams = getNewStreams();
-		var dateStr = new Date().toUTCString();
+		var gamesUrl = ArrayToURL(streams.map(value => value.game_id), "https://api.twitch.tv/helix/games?", "id");
 
-		if (newStreams.length) {
-			if ((localStorage.showNotifications === "true")) {
-				for (var i = 0; i < newStreams.length; i++) {
+		$.ajax({
+			type: "GET",
+			timeout: var_AJAXTimeout,
+			cache: false,
+			dataType: "json",
+			url: gamesUrl,
+			headers: {
+				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+			}
+		}).done(function(gamesJSON) {
+			gamesJSON.data.forEach(game => {
+				for (const stream of streams.filter((v) => v.game_id === game.id)) {
+					delete stream.game_id;
+					stream.game = game.name;
+				}
+			});
 
-					var xhr = [];
+			var newStreams = getNewStreams();
+			var dateStr = new Date().toUTCString();
+
+			if (newStreams.length) {
+				if ((localStorage.showNotifications === "true")) {
 					for (var i = 0; i < newStreams.length; i++) {
-						var options = {
-							type: "basic",
-							title: newStreams[i].channel.display_name,
-							message: "is playing " + newStreams[i].game,
-							contextMessage: newStreams[i].channel.url
-						};
-						var listeners = {
-								onButtonClicked: function(btnIdx) {
-										if (btnIdx === 0) {
-										} else if (btnIdx === 1) {
-										}
-								},
-								onClicked: function(notifId) {
-										openStream(notifId);
-								},
-								onClosed: function(byUser) {
-								}
-						};
 
-						(function (i, url, options, listeners, cname){
-							xhr[i] = new XMLHttpRequest();
-							xhr[i].open("GET", url, true);
-							xhr[i].responseType = "blob";
-							xhr[i].onreadystatechange = function() {
-								if (xhr[i].readyState == 4 && xhr[i].status == 200) {
-									options.iconUrl = window.URL.createObjectURL(xhr[i].response);
-									createNotification(options, listeners, cname);
+						var xhr = [];
+						for (var i = 0; i < newStreams.length; i++) {
+							var options = {
+								type: "basic",
+								title: newStreams[i].channel.display_name,
+								message: "is playing " + newStreams[i].game,
+								contextMessage: newStreams[i].channel.url
+							};
+							var listeners = {
+									onButtonClicked: function(btnIdx) {
+											if (btnIdx === 0) {
+											} else if (btnIdx === 1) {
+											}
+									},
+									onClicked: function(notifId) {
+											openStream(notifId);
+									},
+									onClosed: function(byUser) {
+									}
+							};
+
+							(function (i, url, options, listeners, cname){
+								xhr[i] = new XMLHttpRequest();
+								xhr[i].open("GET", url, true);
+								xhr[i].responseType = "blob";
+								xhr[i].onreadystatechange = function() {
+									if (xhr[i].readyState == 4 && xhr[i].status == 200) {
+										options.iconUrl = window.URL.createObjectURL(xhr[i].response);
+										createNotification(options, listeners, cname);
+									}
 								}
-							}
-							xhr[i].send(null);
-						})(i, newStreams[i].channel.logo, options, listeners, newStreams[i].channel.name);
+								xhr[i].send(null);
+							})(i, newStreams[i].channel.logo, options, listeners, newStreams[i].channel.name);
+						}
+
 					}
-
 				}
 			}
-		}
 
-		var len = streams.length;
-		var badgeColor = [100, 65, 165, 255];
-		var badgeText = String(len);
+			var len = streams.length;
+			var badgeColor = [100, 65, 165, 255];
+			var badgeText = String(len);
 
-		updateBadge(badgeText, badgeColor);
+			updateBadge(badgeText, badgeColor);
 
-		if (popup) {
-			popup.updatePopup();
-		}
+			if (popup) {
+				popup.updatePopup();
+			}
 
-		channels = null;
+			channels = null;
+		});
 	}
 
 	function createNotification(details, listeners, notifId) {
@@ -274,15 +311,17 @@
 
 		for (var i = 0; i < channels.length; i++) {
 			var channel = channels[i];
-			loginNameParams.push(channel.channel.name);
+			loginNameParams.push(channel.to_id);
 		}
+		
+		var streamUrl = ArrayToURL(loginNameParams, "https://api.twitch.tv/helix/streams?", "user_id"); //"https://api.twitch.tv/helix/streams?user_id=" + encodeURI(loginNameParams.join("&user_id="));
 
 		lastAjaxRequest = $.ajax({
 			type: "GET",
 			timeout: var_AJAXTimeout,
 			cache: false,
 			dataType: "json",
-			url: "https://api.twitch.tv/kraken/streams?channel=" + encodeURI(loginNameParams.toString()),
+			url: streamUrl,
 			headers: {
 				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
 			}
@@ -293,21 +332,35 @@
 	}
 
 	function loadID () {
-		var url = var_FetchURL.replace("{0}", encodeURI(OptionTwitchID)).replace("{1}", offset);
+		var idUrl = "https://api.twitch.tv/helix/users?login=" + encodeURI(OptionTwitchID);
 
-		lastAjaxRequest = $.ajax({
+		$.ajax({
 			type: "GET",
 			timeout: var_AJAXTimeout,
 			dataType: "json",
-			url: url,
+			url: idUrl,
 			headers: {
 				'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
 			},
 			cache: false
-		});
+		}).done(function(idJSON) {
+			
+			var fetchUrl = var_FetchURL.replace("{0}", idJSON.data[0].id).replace("{1}", offset);
 
-		lastAjaxRequest.done(onloadID);
-		lastAjaxRequest.fail(onloadIDFailed);
+			lastAjaxRequest = $.ajax({
+				type: "GET",
+				timeout: var_AJAXTimeout,
+				dataType: "json",
+				url: fetchUrl,
+				headers: {
+					'Client-ID': 'cxrpeni38u3xeguyfx639noobhpklo8'
+				},
+				cache: false
+			});
+	
+			lastAjaxRequest.done(onloadID);
+			lastAjaxRequest.fail(onloadIDFailed);
+		});
 	};
 
 	function onloadID(TwitchJSON) {
@@ -315,11 +368,11 @@
 
 		offset += var_StreamLimit - 1;
 
-		var tmp = TwitchJSON.follows;
+		var tmp = TwitchJSON.data;
 
 		channels = channels.concat(tmp);
 
-		if (tmp.length > 0 && channels.length < TwitchJSON._total) {
+		if (tmp.length > 0 && channels.length < TwitchJSON.total) {
 			loadID();
 		} else {
 			loadStream();
